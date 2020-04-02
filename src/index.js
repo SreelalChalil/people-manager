@@ -1,13 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Router, Switch, Route} from 'react-router-dom';
+import {createBrowserHistory} from 'history';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import AllContacts from './components/AllContacts';
+import AddContact from './components/AddContact';
+import Layout from './components/Layout';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router history={createBrowserHistory()}>
+    <Switch>
+      {/* <Route exact path='/' render={() => <App></App>} /> */}
+      <Route exact path='/' render={() => <Layout><App> <AllContacts /></App></Layout>} />
+      <Route path='/new' render={() => <Layout><App><AddContact /></App></Layout>} />
+    </Switch>
+  </Router>,
   document.getElementById('root')
 );
 
