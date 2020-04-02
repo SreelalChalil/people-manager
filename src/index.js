@@ -9,6 +9,7 @@ import * as serviceWorker from './serviceWorker';
 import AllContacts from './components/AllContacts';
 import AddContact from './components/AddContact';
 import ContactList from './components/ContactList';
+import Details from './components/Details';
 import Layout from './components/Layout';
 
 ReactDOM.render(
@@ -19,6 +20,7 @@ ReactDOM.render(
       <Route path='/new' render={() => <Layout><App><AddContact /></App></Layout>} />
       <Route path='/favourites' render={() => <Layout><App></App></Layout>} />
       <Route path='/all' render={() => <Layout><App><ContactList/></App></Layout>} />
+      <Route path='/details' render={() => <Layout><App><Details /></App></Layout>} />
       <Route path='/manage-data' render={() => <Layout><App></App></Layout>} />
     </Switch>
   </Router>,

@@ -1,6 +1,7 @@
 import React ,{Component} from 'react';
 import {CardDeck} from 'react-bootstrap';
 import ContactCard from './ContactCard';
+import { Link } from 'react-router-dom';
 
 
 class AllContacts extends Component{
@@ -11,7 +12,7 @@ class AllContacts extends Component{
                 <h3>All Contacts</h3>
                 <hr />
                 <CardDeck>
-                    <ContactCard />  
+                    <Link className="text-link" to="/details"><ContactCard />  </Link>
                     <ContactCard />  
                     <ContactCard />  
                     <ContactCard />  

@@ -11,3 +11,12 @@ body{
 .navbar{
     border-bottom: 1px solid rgba(var(--b6a,219,219,219),1);
 }
+
+.text-link,.text-link:hover{
+    color: #212529;
+    text-decoration: none;
+  }
+
+  .margin-left{
+      margin-left: 10px;
+  }
