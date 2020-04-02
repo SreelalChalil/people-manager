@@ -54,20 +54,16 @@ function AddContact(){
                             <Form.Control type="text" placeholder="Job/ Designation" />
                         </Form.Group>
 
-                        
-
                         <Form.Group controlId="notes">
                             <Form.Label>Notes</Form.Label>
                             <Form.Control type="text" placeholder="Notes" />
-                        </Form.Group>
-                        
-                        
-                            
-                    </Form>
+                        </Form.Group>  
+                </Form>
                 </Card.Body>
                 <Card.Footer>
                     <span>&nbsp;</span>
                     <Button  variant="success" type="submit">Add Contact</Button></Card.Footer>
+                
             </Card>
         </Container>
         

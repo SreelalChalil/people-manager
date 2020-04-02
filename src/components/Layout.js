@@ -14,8 +14,8 @@ function Layout({children}) {
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     <LinkContainer to="/new"><Nav.Link>+ New</Nav.Link></LinkContainer>
-                    <Nav.Link href="/favourites">♡ Favorites</Nav.Link>
-                    
+                    <LinkContainer to="/favourites"><Nav.Link>♡ Favorites</Nav.Link></LinkContainer>
+                    <LinkContainer to="/list"><Nav.Link>All Contacts</Nav.Link></LinkContainer>
                 </Nav>
                 <Form inline className="mr-auto">
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
@@ -23,9 +23,9 @@ function Layout({children}) {
                 </Form>
                 <Nav className="float-right">
                 <NavDropdown title="More" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Date Chart</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.1">Manage Data</NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.2">List View</NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.2">Logout</NavDropdown.Item>
                 </NavDropdown>
                 </Nav>
                 
