@@ -15,7 +15,7 @@ function Layout({children}) {
                 <Nav className="mr-auto">
                     <LinkContainer to="/new"><Nav.Link>+ New</Nav.Link></LinkContainer>
                     <LinkContainer to="/favourites"><Nav.Link>♡ Favorites</Nav.Link></LinkContainer>
-                    <LinkContainer to="/list"><Nav.Link>All Contacts</Nav.Link></LinkContainer>
+                    <LinkContainer to="/all"><Nav.Link>All Contacts</Nav.Link></LinkContainer>
                 </Nav>
                 <Form inline className="mr-auto">
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
@@ -23,9 +23,9 @@ function Layout({children}) {
                 </Form>
                 <Nav className="float-right">
                 <NavDropdown title="More" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="#action/3.1">Manage Data</NavDropdown.Item>
+                    <LinkContainer to="/manage-data"><NavDropdown.Item>Manage Data</NavDropdown.Item></LinkContainer>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.2">Logout</NavDropdown.Item>
+                    <NavDropdown.Item href="#logout">Logout</NavDropdown.Item>
                 </NavDropdown>
                 </Nav>
                 

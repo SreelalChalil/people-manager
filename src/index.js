@@ -16,6 +16,9 @@ ReactDOM.render(
       {/* <Route exact path='/' render={() => <App></App>} /> */}
       <Route exact path='/' render={() => <Layout><App> <AllContacts /></App></Layout>} />
       <Route path='/new' render={() => <Layout><App><AddContact /></App></Layout>} />
+      <Route path='/favourites' render={() => <Layout><App></App></Layout>} />
+      <Route path='/all' render={() => <Layout><App></App></Layout>} />
+      <Route path='/manage-data' render={() => <Layout><App></App></Layout>} />
     </Switch>
   </Router>,
   document.getElementById('root')
