@@ -8,7 +8,7 @@ function Layout({children}) {
         <div>
         <Navbar bg="light" variant="light" expand="md" fixed="top">
             <Container>
-            <LinkContainer to="/">
+            <LinkContainer to="/home">
                 <Navbar.Brand>✆ Contacts</Navbar.Brand>
             </LinkContainer>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -25,7 +25,7 @@ function Layout({children}) {
                 <NavDropdown title="Settings" id="basic-nav-dropdown">
                     <LinkContainer to="/manage-data"><NavDropdown.Item>Manage Data</NavDropdown.Item></LinkContainer>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#logout">Logout</NavDropdown.Item>
+                    <NavDropdown.Item href="/">Logout</NavDropdown.Item>
                 </NavDropdown>
                 </Nav>
                 

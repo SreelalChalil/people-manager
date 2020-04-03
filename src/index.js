@@ -5,18 +5,19 @@ import {createBrowserHistory} from 'history';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
 import AllContacts from './components/AllContacts';
 import AddContact from './components/AddContact';
 import ContactList from './components/ContactList';
 import Details from './components/Details';
 import Layout from './components/Layout';
+import LandingPage from "./components/LandingPage";
+import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <Router history={createBrowserHistory()}>
     <Switch>
-      {/* <Route exact path='/' render={() => <App></App>} /> */}
-      <Route exact path='/' render={() => <Layout><App> <AllContacts /></App></Layout>} />
+      <Route exact path='/' render={() => <LandingPage></LandingPage>} />
+      <Route path='/home' render={() => <Layout><App> <AllContacts /></App></Layout>} />
       <Route path='/new' render={() => <Layout><App><AddContact /></App></Layout>} />
       <Route path='/favourites' render={() => <Layout><App></App></Layout>} />
       <Route path='/all' render={() => <Layout><App><ContactList/></App></Layout>} />
