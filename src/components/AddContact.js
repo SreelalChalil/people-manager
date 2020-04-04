@@ -94,8 +94,7 @@ class AddContact extends Component{
                 </Card.Body>
                 <Card.Footer>
                     <span>&nbsp;</span>
-                    <Button  variant="success" onClick={this.handleFormSubmit} type="submit">Add Contact</Button></Card.Footer>
-                
+                    <Button  variant="success" onClick={this.handleFormSubmit} type="submit">Add Contact</Button></Card.Footer>         
             </Card>
         </Container>
         

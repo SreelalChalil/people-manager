@@ -19,20 +19,20 @@ function ContactList(){
                     <tr>
                     <td>1</td>
                     <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <td>7894120273</td>
+                    <td>mark@example.com</td>
                     </tr>
                     <tr>
                     <td>2</td>
                     <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
+                    <td>7412589630</td>
+                    <td>jacob@example.com</td>
                     </tr>
                     <tr>
                     <td>3</td>
-                    <td>Larry the Bird</td>
-                    <td>Larry the Bird</td>
-                    <td>@twitter</td>
+                    <td>Larry Hudson</td>
+                    <td>8794521630</td>
+                    <td>larry@example.com</td>
                     </tr>
                 </tbody>
                 </Table>
