@@ -59,22 +59,20 @@ class AddContact extends Component{
                             </Form.Group>
 
                             <Form.Group as={Col} controlId="phone2">
-                            <Form.Label>Alternate Number</Form.Label>
-                            <Form.Control name="altphone" value={altphone} onChange={this.handleInputChange}  type="text" placeholder="Alternate Number" />
+                            <Form.Label>Alt Number</Form.Label>
+                            <Form.Control name="altphone" value={altphone} onChange={this.handleInputChange}  type="text" placeholder="Alt. Number" />
                             </Form.Group>
                         </Form.Row>
-
-                        <Form.Row>
-                            <Form.Group  as={Col} controlId="email">
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control name="email" value={email} onChange={this.handleInputChange} type="email" placeholder="Email" />
-                            </Form.Group>
-
-                            <Form.Group  as={Col} controlId="facebook">
-                                <Form.Label>Facebook Profile</Form.Label>
+            
+                        <Form.Group controlId="email">
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control name="email" value={email} onChange={this.handleInputChange} type="email" placeholder="Email" />
+                        </Form.Group>
+                        
+                        <Form.Group controlId="facebook">
+                                <Form.Label>Facebook</Form.Label>
                                 <Form.Control name="facebook" value={facebook} onChange={this.handleInputChange} type="text" placeholder="facebook" />
-                            </Form.Group>  
-                        </Form.Row>
+                        </Form.Group> 
 
                         <Form.Group controlId="address">
                                 <Form.Label>Address</Form.Label>

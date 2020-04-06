@@ -10,8 +10,7 @@ function LandingPage()
                 <Card>
                    <Card.Header> 
                        <b>✆ Contacts App </b>
-                       <LinkContainer to="/home"><Button className="margin-left" variant="outline-primary">Home</Button></LinkContainer>
-                       <Button variant="outline-dark" className="float-right">Sign Up</Button>
+                       <LinkContainer to="/home"><Button className="margin-left float-right" variant="outline-primary">Home</Button></LinkContainer>
                     </Card.Header>
                    <Card.Body>
                     <Form>
