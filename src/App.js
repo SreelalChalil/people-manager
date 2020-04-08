@@ -1,11 +1,11 @@
 import React from 'react';
-import './App.css';
 
-function App({ children }) {
+function App({children}) {
+   
   return (
-    <div className="App">
-    {children}
-    </div>
+        <div className="App">
+            {children}
+        </div>
   );
 }
 

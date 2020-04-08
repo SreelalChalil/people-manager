@@ -9,9 +9,25 @@ body{
 }
 
 .navbar{
-    border-bottom: 1px solid rgba(var(--b6a,219,219,219),1);
+    border-bottom: 2px solid rgba(var(--b6a,219,219,219),1);
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
 
+.card-header{
+    border-bottom: 1px solid rgba(var(--b6a,219,219,219),1);
+}
+.navbar-light .navbar-brand, .navbar-light .navbar-brand:hover {
+    font-weight: 500;
+    color:rgb(88, 13, 62)
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: rgb(175, 53, 163);
+}
+.navbar-light .navbar-nav .nav-link.active{
+    color: rgb(175, 53, 163);
+    border-bottom: 1px solid rgba(var(--b6a,219,119,209),1);
+}
 .text-link,.text-link:hover{
     color: #212529;
     text-decoration: none;
@@ -24,3 +40,5 @@ body{
     right: 0 !important;
     left: auto !important;
   }
+
+  .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }

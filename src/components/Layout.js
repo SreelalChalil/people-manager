@@ -1,10 +1,23 @@
-import React from 'react';
-import {Nav, Navbar, NavDropdown, Form, FormControl, Container,} from 'react-bootstrap';
+import React,{ useState, useEffect } from 'react';
+import { BrowserRouter as Router, withRouter} from 'react-router-dom';
+import firebase from '../config/firebase';
+import {Nav, Navbar, Form, FormControl, Container,} from 'react-bootstrap';
 import { LinkContainer } from "react-router-bootstrap";
+import SignOut from './SignOut';
 
+function Layout(props) {
 
-function Layout({children}) {
+    const children = props.children;
+    const [authenticated,setAuthenticated]= useState(false);
+
+    useEffect(() => {
+      firebase.auth().onAuthStateChanged((authenticated) => {
+          authenticated? setAuthenticated(true) : props.history.replace("/");
+      });
+    }); 
+
     return(
+        authenticated?
         <div>
         <Navbar bg="light" variant="light" expand="md" fixed="top">
             <Container>
@@ -22,13 +35,9 @@ function Layout({children}) {
                     <FormControl type="text" placeholder="&#128269; Search" className="mr-sm-3" size="sm" />
                 </Form>
                 <Nav className="float-right">
-                <NavDropdown title="Settings" id="basic-nav-dropdown">
-                    <LinkContainer to="/manage-data"><NavDropdown.Item>Manage Data</NavDropdown.Item></LinkContainer>
-                    <NavDropdown.Divider />
-                    <NavDropdown.Item href="/">Logout</NavDropdown.Item>
-                </NavDropdown>
-                </Nav>
-                
+                    <LinkContainer to="/manage-data"><Nav.Link>Manage Data</Nav.Link></LinkContainer>
+                    <SignOut/>
+                </Nav>              
                 </Navbar.Collapse>
             </Container>
             
@@ -37,8 +46,10 @@ function Layout({children}) {
             <span style={{padding:10 }}></span>
             {children}
         </Container>
+        
       </div>
+      :null
     )
 }
 
-export default Layout;
+export default withRouter(Layout);

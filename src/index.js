@@ -4,19 +4,20 @@ import {Router, Switch, Route} from 'react-router-dom';
 import {createBrowserHistory} from 'history';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
+import './App.css';
 import App from './App';
 import AllContacts from './components/AllContacts';
 import AddContact from './components/AddContact';
 import ContactList from './components/ContactList';
 import Details from './components/Details';
 import Layout from './components/Layout';
-import LandingPage from "./components/LandingPage";
+import Login from "./components/Login";
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <Router history={createBrowserHistory()}>
     <Switch>
-      <Route exact path='/' render={() => <LandingPage></LandingPage>} />
+      <Route exact path='/' render={() => <Login></Login>} />
       <Route path='/home' render={() => <Layout><App> <AllContacts /></App></Layout>} />
       <Route path='/new' render={() => <Layout><App><AddContact /></App></Layout>} />
       <Route path='/favourites' render={() => <Layout><App></App></Layout>} />
