@@ -1,5 +1,5 @@
 import React,{ useState, useEffect } from 'react';
-import { BrowserRouter as Router, withRouter} from 'react-router-dom';
+import { withRouter} from 'react-router-dom';
 import firebase from '../config/firebase';
 import {Nav, Navbar, Form, FormControl, Container,} from 'react-bootstrap';
 import { LinkContainer } from "react-router-bootstrap";

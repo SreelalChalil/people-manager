@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Col, Button, Container, Card} from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
+import firebase from '../config/firebase';
 
 class AddContact extends Component{
     state = {
@@ -18,6 +19,24 @@ class AddContact extends Component{
     handleFormSubmit = evt => {
         evt.preventDefault();
         console.log(this.state);
+        firebase.firestore().collection("contacts").add({
+            name: this.state.name,
+            nickname: this.state.nickname,
+            phone: this.state.phone,
+            altphone:this.state.altphone,
+            email:this.state.email,
+            address: this.state.address,
+            facebook: this.state.facebook,
+            job: this.state.job,
+            notes: this.state.notes,
+        })
+        .then(function(docRef) {
+            console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function(error) {
+            console.error("Error adding document: ", error);
+        });
+        
     }
 
     handleInputChange = evt => {

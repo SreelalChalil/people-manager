@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Switch, Route} from 'react-router-dom';
-import {createBrowserHistory} from 'history';
+import { BrowserRouter as Router, Switch,Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import './App.css';
@@ -15,14 +14,14 @@ import Login from "./components/Login";
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <Router history={createBrowserHistory()}>
+  <Router>
     <Switch>
       <Route exact path='/' render={() => <Login></Login>} />
       <Route path='/home' render={() => <Layout><App> <AllContacts /></App></Layout>} />
       <Route path='/new' render={() => <Layout><App><AddContact /></App></Layout>} />
       <Route path='/favourites' render={() => <Layout><App></App></Layout>} />
       <Route path='/all' render={() => <Layout><App><ContactList/></App></Layout>} />
-      <Route path='/details' render={() => <Layout><App><Details /></App></Layout>} />
+      <Route path='/details/:id' render={props => <Layout><App><Details {...props}/></App></Layout>} />
       <Route path='/manage-data' render={() => <Layout><App></App></Layout>} />
     </Switch>
   </Router>,

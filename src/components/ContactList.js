@@ -1,7 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {Card, Table} from 'react-bootstrap';
+import firebase from '../config/firebase';
 
 function ContactList(){
+
+    const [contacts,setContacts] = useState([]);
+
+    const ref = firebase.firestore().collection("contacts");
+    const onCollectionUpdate = (querySnapshot) => {
+        const mycontacts =[];
+        querySnapshot.forEach((doc) => {
+            const { name,email,phone } = doc.data();
+            mycontacts.push({
+                key: doc.id,
+                name,
+                phone,
+                email,
+              });
+        });
+        setContacts(mycontacts);
+    }
+
+    useEffect(() => {
+        var unSubscribe = ref.onSnapshot(onCollectionUpdate);
+    });
+
     return(
         <Card>
             <Card.Header>All Contacts</Card.Header>
@@ -15,25 +38,17 @@ function ContactList(){
                     <th>Email</th>
                     </tr>
                 </thead>
+                
                 <tbody>
-                    <tr>
-                    <td>1</td>
-                    <td>Mark</td>
-                    <td>7894120273</td>
-                    <td>mark@example.com</td>
+                  
+                { contacts.map((contact,i) =>
+                    <tr key={contact.key}>
+                        <td>{i+1}</td>
+                        <td>{contact.name}</td>
+                        <td>{contact.phone}</td>
+                        <td>{contact.email}</td>
                     </tr>
-                    <tr>
-                    <td>2</td>
-                    <td>Jacob</td>
-                    <td>7412589630</td>
-                    <td>jacob@example.com</td>
-                    </tr>
-                    <tr>
-                    <td>3</td>
-                    <td>Larry Hudson</td>
-                    <td>8794521630</td>
-                    <td>larry@example.com</td>
-                    </tr>
+                    )}
                 </tbody>
                 </Table>
             </Card.Body>
