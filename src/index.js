@@ -11,6 +11,7 @@ import ContactList from './components/ContactList';
 import Details from './components/Details';
 import Layout from './components/Layout';
 import Login from "./components/Login";
+import 'react-notifications/lib/notifications.css';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
@@ -31,4 +32,4 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.register();

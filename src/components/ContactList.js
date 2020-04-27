@@ -1,29 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import {Card, Table} from 'react-bootstrap';
-import firebase from '../config/firebase';
+import {db} from '../config/firebase';
 
 function ContactList(){
-
     const [contacts,setContacts] = useState([]);
-
-    const ref = firebase.firestore().collection("contacts");
-    const onCollectionUpdate = (querySnapshot) => {
-        const mycontacts =[];
-        querySnapshot.forEach((doc) => {
-            const { name,email,phone } = doc.data();
-            mycontacts.push({
-                key: doc.id,
-                name,
-                phone,
-                email,
-              });
-        });
-        setContacts(mycontacts);
-    }
-
     useEffect(() => {
-        var unSubscribe = ref.onSnapshot(onCollectionUpdate);
-    });
+        const unsubscribe = db.collection("contacts")
+                            .orderBy('name')
+                            .onSnapshot( (querySnapshot) => {
+                                const mycontacts = querySnapshot.docs.map((doc) => ({
+                                        key: doc.id,
+                                        ...doc.data()
+                                    }))
+                                setContacts(mycontacts)
+                            })                      
+        
+        return () => unsubscribe() 
+    },[])
 
     return(
         <Card>

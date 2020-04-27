@@ -1,59 +1,43 @@
-import React ,{Component} from 'react';
+import React ,{useEffect,useState} from 'react';
 import {CardDeck, Row, Col} from 'react-bootstrap';
 import ContactCard from './ContactCard';
 import { Link } from 'react-router-dom';
-import firebase from '../config/firebase';
+import {db} from '../config/firebase';
 
-class AllContacts extends Component{
+function AllContacts() {
 
-    constructor(props) {
-        super(props);
-        this.ref = firebase.firestore().collection('contacts');
-        this.unsubscribe = null;
-        this.state = {
-          contacts: []
-        };
-      }
+  const [contacts,setContacts] = useState([])
     
-      onCollectionUpdate = (querySnapshot) => {
-        // initialises a contacts array
-        const contacts = [];
-        querySnapshot.forEach((doc) => {
-          const { name } = doc.data();
-          // push each record to contacts array
-          contacts.push({
-            key: doc.id,
-            name, 
-          });
-        });
+  useEffect(() => {
+      const unsubscribe = db.collection("contacts")
+                          .orderBy('name')
+                          .onSnapshot( (querySnapshot) => {
+                              const mycontacts = querySnapshot.docs.map((doc) => ({
+                                      key: doc.id,
+                                      ...doc.data()
+                                  }))
+                              setContacts(mycontacts)
+                          })                      
+      
+      return () => unsubscribe() 
+  },[])
 
-        this.setState({contacts});
-      }
-    
-      componentDidMount() {
-        this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
-      }
-
-    render() {
-        return(
+  return(
             <div> 
                 <h3>All Contacts</h3>
                 <hr />
                 <CardDeck>
                     <Row>
-                    {this.state.contacts.map(contact =>
-                    <Col md={3} key={contact.key}>
-                        <Link className="text-link" to={`details/${contact.key}`} key={contact.key}>
-                            <ContactCard  id={contact.key} key={contact.key}/>  
-                        </Link>
-                    </Col>
-                     )}
-                    </Row>
-                                
+                      {contacts.map(contact =>
+                      <Col md={3} key={contact.key}>
+                          <Link className="text-link" to={`details/${contact.key}`}>
+                              <ContactCard  contact={contact} />  
+                          </Link>
+                      </Col>
+                      )}
+                    </Row>              
                 </CardDeck>
             </div>          
-        )
-    }
+      )
 }
-
 export default AllContacts;

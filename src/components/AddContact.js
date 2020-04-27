@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { Form, Col, Button, Container, Card} from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
-import firebase from '../config/firebase';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import {db} from '../config/firebase';
 
 class AddContact extends Component{
     state = {
@@ -14,12 +16,14 @@ class AddContact extends Component{
         facebook: '',
         job: '',
         notes: '',
+        success:false,
     };
     
     handleFormSubmit = evt => {
+        const { history } = this.props;
         evt.preventDefault();
-        console.log(this.state);
-        firebase.firestore().collection("contacts").add({
+        
+        db.collection("contacts").add({
             name: this.state.name,
             nickname: this.state.nickname,
             phone: this.state.phone,
@@ -32,6 +36,8 @@ class AddContact extends Component{
         })
         .then(function(docRef) {
             console.log("Document written with ID: ", docRef.id);
+            NotificationManager.success('Contact is saved successfully', 'Success!');
+            setTimeout(() => {history.push('/details/'+docRef.id)}, 2000);
         })
         .catch(function(error) {
             console.error("Error adding document: ", error);
@@ -40,7 +46,7 @@ class AddContact extends Component{
     }
 
     handleInputChange = evt => {
-        console.log('event',evt.target.value);
+       
         this.setState({
             [evt.target.name] : evt.target.value
         });
@@ -50,6 +56,7 @@ class AddContact extends Component{
         const {name,nickname,phone,altphone,email,address,facebook,job,notes} = this.state;
     return(
         <Container>
+            <NotificationContainer/>
             <Card>
                 <Card.Header>
                     Add New Contact
@@ -58,6 +65,7 @@ class AddContact extends Component{
                     </LinkContainer>
                 </Card.Header>
                 <Card.Body>
+                    {this.state.success?<p>Contact Added</p>:null}
                 <Form>
                         <Form.Row>
                             <Form.Group as={Col} controlId="name">
@@ -119,4 +127,4 @@ class AddContact extends Component{
     }
 }
 
-export default AddContact;
+export default withRouter(AddContact);

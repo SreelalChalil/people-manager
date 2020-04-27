@@ -1,5 +1,5 @@
 {
-  "short_name": "People Manager",
+  "short_name": "People",
   "name": "People Manager",
   "icons": [
     {
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#ff6e1f",
   "background_color": "#ffffff"
 }
