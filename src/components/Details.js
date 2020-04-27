@@ -3,6 +3,7 @@ import {Card,Button,Table,CardDeck,Modal,Form,ProgressBar} from 'react-bootstrap
 import {storage,db} from  '../config/firebase';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import placeholder from '../assets/placeholder.png'
+import { withRouter ,Link} from 'react-router-dom';
 
 const Details = (props) => {
 
@@ -28,9 +29,6 @@ const Details = (props) => {
         const image = e.target.files[0]
         setImageAsFile(imageFile => (image))
     }
-
-    var now = 60;
-    const progressInstance = <ProgressBar now={now} label={`${now}%`} />;
 
     // firebase file upload
     const handleFireBaseUpload = e => {
@@ -105,7 +103,9 @@ const Details = (props) => {
         <Card>
             <Card.Header>
                 Details
-                <Button variant="outline-primary" size="sm" className="float-right margin-left">Edit</Button>
+                <Link variant="outline-primary" to={`/edit/${contactId}`}>
+                    <Button variant="outline-primary" size="sm" className="float-right margin-left">Edit</Button>
+                </Link>
                 <Button variant="outline-danger"size="sm"  className="float-right margin-left">Delete</Button>
             </Card.Header>
             <Card.Body>
@@ -184,4 +184,4 @@ const Details = (props) => {
     )
 }
 
-export default Details;
+export default withRouter(Details);

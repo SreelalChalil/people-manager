@@ -13,6 +13,7 @@ import Layout from './components/Layout';
 import Login from "./components/Login";
 import 'react-notifications/lib/notifications.css';
 import * as serviceWorker from './serviceWorker';
+import EditContact from './components/EditContact';
 
 ReactDOM.render(
   <Router>
@@ -24,6 +25,7 @@ ReactDOM.render(
       <Route path='/all' render={() => <Layout><App><ContactList/></App></Layout>} />
       <Route path='/details/:id' render={props => <Layout><App><Details {...props}/></App></Layout>} />
       <Route path='/manage-data' render={() => <Layout><App></App></Layout>} />
+      <Route path='/edit/:id' render={props => <Layout><App><EditContact {...props}/></App></Layout>} />
     </Switch>
   </Router>,
   document.getElementById('root')

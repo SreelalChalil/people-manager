@@ -5,7 +5,20 @@ import { LinkContainer } from 'react-router-bootstrap';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import {db} from '../config/firebase';
 
-class AddContact extends Component{
+class EditContact extends Component{
+
+    contactId = this.props.match.params.id;
+    
+    componentDidMount() {
+        if(this.contactId != null){
+            db.collection('contacts')
+                                .doc(this.contactId)
+                                .get()
+                                .then((doc) => {
+                                        this.setState(doc.data())
+                                    })
+        }
+    }
     state = {
         name: '',
         nickname: '',
@@ -16,14 +29,14 @@ class AddContact extends Component{
         facebook: '',
         job: '',
         notes: '',
-        success:false,
+        photo:''
     };
     
     handleFormSubmit = evt => {
         const { history } = this.props;
         evt.preventDefault();
         
-        db.collection("contacts").add({
+        db.collection("contacts").doc(this.contactId).set({
             name: this.state.name,
             nickname: this.state.nickname,
             phone: this.state.phone,
@@ -33,14 +46,14 @@ class AddContact extends Component{
             facebook: this.state.facebook,
             job: this.state.job,
             notes: this.state.notes,
+            photo:this.state.photo,
         })
-        .then(function(docRef) {
-            console.log("Document written with ID: ", docRef.id);
-            NotificationManager.success('Contact is saved successfully', 'Success!');
-            setTimeout(() => {history.push('/details/'+docRef.id)}, 2000);
+        .then(() => {    
+            NotificationManager.success('Contact is updated successfully', 'Success!');
+            setTimeout(() => {history.push('/details/'+this.contactId)}, 2000);
         })
         .catch(function(error) {
-            NotificationManager.Error('Failed to save contact', 'Error!');
+            NotificationManager.error('Failed to update contact', 'Error!');
             console.error("Error adding document: ", error);
         });
         
@@ -66,7 +79,6 @@ class AddContact extends Component{
                     </LinkContainer>
                 </Card.Header>
                 <Card.Body>
-                    {this.state.success?<p>Contact Added</p>:null}
                 <Form>
                         <Form.Row>
                             <Form.Group as={Col} controlId="name">
@@ -128,4 +140,4 @@ class AddContact extends Component{
     }
 }
 
-export default withRouter(AddContact);
+export default withRouter(EditContact);
