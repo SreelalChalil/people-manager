@@ -2,7 +2,7 @@
 People-manager is a React & Firebase based simple contact organizer application. People-manager uses React along with Bootstrap in the frontend and Firebase as the Backend Service
 It is largely re written using React Hooks
 
-### FIrebase Services Used:
+### Firebase Services Used:
 #### Authentication
 #### Cloud Firestore
 #### Firebase Storage
